@@ -33,9 +33,10 @@ public class App {
         // Mostrar al usuario que el archivo se procesó.
         System.out.println("Proceso finalizado, " + lista.size() + " estudiantes leídos.");
 
-//        System.out.println("\nLista de Estudiantes:");
-//        for(Estudiante e : lista)
-//            System.out.println(e);
+        //imprimo los estudiantes importados y en que casa se agregaron
+       System.out.println("\nLista de Estudiantes:");
+        for(Estudiante e : lista)
+           System.out.println(e);
 
         Hogwarts hogwarts = new Hogwarts();
         for(Estudiante e : lista){

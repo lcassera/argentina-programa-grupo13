@@ -65,12 +65,21 @@ public class Estudiante {
 
     public String toString() {
 //        return numero + ": " + nombre + " (" + especie + ")";
-        return new StringBuffer()
+        /*return new StringBuffer()
                 .append(numero)
                 .append(": ")
                 .append(nombre)
                 .append(" (")
                 .append(especie)
+                .append(")")
+                .toString();*/
+
+        return new StringBuffer()
+                .append(numero)
+                .append(": Estudiante: ")
+                .append(nombre)
+                .append(" (Casa: ")
+                .append(nombreCasa)
                 .append(")")
                 .toString();
     }
