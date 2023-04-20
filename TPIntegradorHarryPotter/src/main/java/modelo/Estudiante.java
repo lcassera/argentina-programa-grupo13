@@ -88,7 +88,7 @@ public class Estudiante {
 
     //Metodo que devuelve true si el estudiante es humano o false si no es humano
     public boolean isHuman(){
-        if (this.getEspecie().equals("Human")){
+        if (this.getEspecie().contains("Human")){
             return true;
         }
         else{
