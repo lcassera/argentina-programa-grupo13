@@ -48,5 +48,16 @@ public class App {
             System.out.println("Casa: " + casa + " ==> " + hogwarts.getCasa(casa).getCantidadEstudiantes() + " estudiantes");
         }
 
+
+        System.out.println();
+        System.out.println("---------------------------------");
+        System.out.println("Listado de estudiantes no humanos");
+        System.out.println("---------------------------------");
+        for (String casa : new String[] {"Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw"}) {
+            ArrayList<Estudiante> estudiantesNohumanos = hogwarts.getCasa(casa).estudiantesNoHumanos();
+            for (Estudiante e : estudiantesNohumanos) {
+                System.out.println(e);
+            }
+        }
     }
 }

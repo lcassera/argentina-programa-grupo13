@@ -78,10 +78,22 @@ public class Estudiante {
                 .append(numero)
                 .append(": Estudiante: ")
                 .append(nombre)
+                .append(": Especie: ")
+                .append(especie)
                 .append(" (Casa: ")
                 .append(nombreCasa)
                 .append(")")
                 .toString();
+    }
+
+    //Metodo que devuelve true si el estudiante es humano o false si no es humano
+    public boolean isHuman(){
+        if (this.getEspecie().equals("Human")){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public static Estudiante parseStringArray(String[] datos) {
