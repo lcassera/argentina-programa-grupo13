@@ -88,7 +88,7 @@ public class ProcesadorArchivoCsv {
                     contadorLineas ++;
                 }
                 if (contadorLineasInvalidas > 0){
-                    System.err.println("Líneas inválidas encontradas: " + contadorLineasInvalidas );
+//                    System.err.println("Líneas inválidas encontradas: " + contadorLineasInvalidas );
                 }
 
             }

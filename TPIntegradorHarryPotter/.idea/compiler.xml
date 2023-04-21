@@ -9,5 +9,8 @@
         <module name="tpintegradorharrypotter" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="TPIntegradorHarryPotter" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

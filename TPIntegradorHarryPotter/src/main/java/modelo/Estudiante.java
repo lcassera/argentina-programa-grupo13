@@ -64,15 +64,6 @@ public class Estudiante {
     }
 
     public String toString() {
-//        return numero + ": " + nombre + " (" + especie + ")";
-        /*return new StringBuffer()
-                .append(numero)
-                .append(": ")
-                .append(nombre)
-                .append(" (")
-                .append(especie)
-                .append(")")
-                .toString();*/
 
         return new StringBuffer()
                 .append(numero)
@@ -85,8 +76,6 @@ public class Estudiante {
                 .append(")")
                 .toString();
     }
-
-    //Metodo que devuelve true si el estudiante es humano o false si no es humano
     public boolean isHuman(){
         if (this.getEspecie().contains("Human")){
             return true;
@@ -98,8 +87,7 @@ public class Estudiante {
 
     public static Estudiante parseStringArray(String[] datos) {
         try {
-            // Realizo las trasformaciones de cada porción de la línea de texto al dato que espera
-            //  la clase Estudiante
+
             int numero = Integer.parseInt(datos[0]);
             String nombre = datos[1];
             char genero = (datos[2].equals("Female") || datos[2].equals("Male")) ? datos[2].charAt(0) : 'X';
