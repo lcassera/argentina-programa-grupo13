@@ -9,7 +9,8 @@ public class App {
     public static void main(String[] args){
         Scanner miEscanner = new Scanner(System.in);
 
-        System.out.println("Cargador de Datos de Hogwards");
+        System.out.println("=============================");
+        System.out.println("Cargador de Datos de Hogwarts");
         System.out.println("=============================");
         System.out.println();
 

@@ -17,8 +17,7 @@ public class ProcesadorArchivoCsv {
     //    private String regex;
     String regex = "[0-9]+,[a-zA-Z ().-]+,[a-zA-Z]*,[a-zA-Z0-9 |()-]*,[a-zA-Z ]+,[a-zA-Z ()/-]*,[a-zA-Z ()|-]*";
 
-    public ProcesadorArchivoCsv(String nombreArchivo) {
-        this.nombreArchivo = nombreArchivo;
+    public ProcesadorArchivoCsv(String nombreArchivo) { this.nombreArchivo = nombreArchivo;
     }
 
     public ArrayList<Estudiante> procesarArchivo(){
