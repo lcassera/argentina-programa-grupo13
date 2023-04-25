@@ -57,48 +57,41 @@ public class ProcesadorArchivoCsv {
 
     }
 
-    public ArrayList<Estudiante> procesarArchivoConValidacion(){
+    public ArrayList<Estudiante> procesarArchivoConValidacion() throws IOException{
         ArrayList<Estudiante> lista = new ArrayList<>();
         Path f = Paths.get(nombreArchivo);
         Pattern pattern = Pattern.compile(regex);
 
         if (Files.exists(f) && Files.isReadable(f)) {
 
-            try (Scanner miEscaner = new Scanner(f, "UTF-8")) {
-                int contadorLineasInvalidas = 0;
-                int contadorLineas = 1;
+            Scanner miEscaner = new Scanner(f, "UTF-8");
+            int contadorLineasInvalidas = 0;
+            int contadorLineas = 1;
 
-                while (miEscaner.hasNextLine()) {
-                    String linea = miEscaner.nextLine();
-                    Matcher matcher = pattern.matcher(linea);
+            while (miEscaner.hasNextLine()) {
+                String linea = miEscaner.nextLine();
+                Matcher matcher = pattern.matcher(linea);
 //                    if (linea.matches(regex)) {
-                    if (matcher.matches()) {
-                        String[] datos = separarLinea(linea);
+                if (matcher.matches()) {
+                    String[] datos = separarLinea(linea);
 //                        System.out.println("Procesando línea: " + contadorLineas);
-                        if (datos[3].contains("Student")){
-                            Estudiante e = Estudiante.parseStringArray(datos);
-                            lista.add(e);
-                        }
+                    if (datos[3].contains("Student")){
+                        Estudiante e = Estudiante.parseStringArray(datos);
+                        lista.add(e);
                     }
-                    else {
+                }
+                else {
 //                        System.out.println("Línea inválida: " + contadorLineas + " | " + linea);
-                        contadorLineasInvalidas++;
-                    }
-                    contadorLineas ++;
+                    contadorLineasInvalidas++;
                 }
-                if (contadorLineasInvalidas > 0){
-//                    System.err.println("Líneas inválidas encontradas: " + contadorLineasInvalidas );
-                }
-
+                contadorLineas ++;
             }
-            catch(IOException ex) {
-                ex.printStackTrace();
-                System.exit(-1);
+            if (contadorLineasInvalidas > 0){
+                System.err.println("Líneas inválidas encontradas: " + contadorLineasInvalidas );
             }
 
-        }
-        else {
-            System.out.println("Error: El archivo no existe.");
+        } else {
+            throw new FileNotFoundException();
         }
         return lista;
 
