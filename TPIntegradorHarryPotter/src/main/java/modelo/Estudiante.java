@@ -4,7 +4,7 @@ public class Estudiante {
 
     private int numero;
     private String nombre;
-    private char genero;
+    private String genero;
 
     // Para la casa pongo un atributo para el nombre que traigo del archivo csv
     private String nombreCasa;
@@ -15,7 +15,7 @@ public class Estudiante {
     private String especie;
     private String blodStatus;
 
-    public Estudiante(int numero, String nombre, char genero, String especie, String blodStatus) {
+    public Estudiante(int numero, String nombre, String genero, String especie, String blodStatus) {
         this.numero = numero;
         this.nombre = nombre;
         this.genero = genero;
@@ -55,7 +55,7 @@ public class Estudiante {
         return nombre;
     }
 
-    public char getGenero() {
+    public String getGenero() {
         return genero;
     }
 
@@ -93,7 +93,7 @@ public class Estudiante {
             //  la clase Estudiante
             int numero = Integer.parseInt(datos[0]);
             String nombre = datos[1];
-            char genero = (datos[2].equals("Female") || datos[2].equals("Male")) ? datos[2].charAt(0) : 'X';
+            String genero = String.valueOf((datos[2].equals("Female") || datos[2].equals("Male")) ? datos[2].charAt(0) : 'X');
 
 //            if (datos[2].equals("Female") || datos[2].equals("Male"))
 //                genero = datos[2].charAt(0);

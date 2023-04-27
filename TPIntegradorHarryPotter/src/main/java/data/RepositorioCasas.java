@@ -1,8 +1,10 @@
 package data;
 
 import modelo.Casa;
+import modelo.Estudiante;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class RepositorioCasas {
 
@@ -52,6 +54,36 @@ public class RepositorioCasas {
             ex.printStackTrace();
         }
         return result;
+
+    }
+
+    public ArrayList<Casa> getAllCasa(){
+        ArrayList<Casa> todasLasCasas = new ArrayList<Casa>();
+        try (Statement sentenciaConsulta = conexion.createStatement()) {
+            String query = "select * from Casas";
+            ResultSet rs = sentenciaConsulta.executeQuery(query);
+
+            while (rs.next())
+            {
+                int id_casa = rs.getInt("id_casa");
+                String nombre = rs.getString("nombre");
+
+                Casa casaActual = new Casa(id_casa,nombre);
+                todasLasCasas.add(casaActual);
+
+
+                StringBuilder builder = new StringBuilder();
+                builder.append("\n\t").append(id_casa)
+                        .append(". Casa: ").append(nombre);
+                System.out.println(builder.toString());
+            }
+
+        }
+        catch (SQLException ex) {
+            System.out.println("Error: en sentencia recuperación casa: \n" + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return todasLasCasas;
 
     }
 

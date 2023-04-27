@@ -40,6 +40,15 @@ public class ProcesoAplicacion {
 
         persistirEstudiantes();
 
+
+        System.out.println("\n\nListado de Casas agregadas en base de datos:\n");
+        getAllCasasBD();
+        System.out.println("\n\nListado de Estudiantes agregados en base de datos: \n");
+        getEstudiantesBD();
+
+
+
+
     }
 
     private static void encabezadoApp() {
@@ -141,5 +150,23 @@ public class ProcesoAplicacion {
         }
 
     }
+
+
+    private void getEstudiantesBD(){
+        Connection miConexion = ProveedorConexionSqlite.conectar(".\\data\\baseDeDatos.sqlite");
+        RepositorioEstudiantes repositorio = new RepositorioEstudiantes(miConexion);
+
+        ArrayList<Estudiante> ListaEstudiantesBD = repositorio.getAllEstudiantes();
+
+    }
+
+
+    private void getAllCasasBD(){
+        Connection miConexion = ProveedorConexionSqlite.conectar(".\\data\\baseDeDatos.sqlite");
+        RepositorioCasas repositorio = new RepositorioCasas(miConexion);
+
+        ArrayList<Casa> ListaCasasBD = repositorio.getAllCasa();
+    }
+
 
 }

@@ -2,6 +2,7 @@ package data;
 import modelo.Casa;
 import modelo.Estudiante;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class RepositorioEstudiantes {
 
@@ -54,6 +55,54 @@ public class RepositorioEstudiantes {
         return estudianteExiste;
 
     }
+
+
+
+    public ArrayList<Estudiante> getAllEstudiantes (){
+        ArrayList<Estudiante> todosLosEstudiantes = new ArrayList<Estudiante>();
+        try (Statement sentenciaConsulta = conexion.createStatement()) {
+            String query = "select * from Estudiantes";
+            ResultSet rs = sentenciaConsulta.executeQuery(query);
+
+
+            while (rs.next())
+            {
+                int numero = rs.getInt("numero");
+                String nombre = rs.getString("nombre");
+                String genero = rs.getString("genero");
+                String especie= rs.getString("especie");
+                String blod_status = rs.getString("blod_status");
+                String id_casa = rs.getString("id_casa");
+
+
+                Estudiante estudianteActual = new Estudiante(numero,nombre,genero,especie,blod_status);
+                todosLosEstudiantes.add(estudianteActual);
+
+
+
+                StringBuilder builder = new StringBuilder("Datos Estudiante\n");
+                builder.append("\tNúmero: ").append(numero)
+                        .append("\tNombre y Apellido: ").append(nombre)
+                        .append("\n\tGenero: ").append(genero)
+                        .append("\n\tEspecie: ").append(especie)
+                        .append("\n\tBloodStatus: ").append(blod_status)
+                        .append("\n");
+                System.out.println(builder.toString());
+
+            }
+            rs.close();
+            sentenciaConsulta.close();
+        }
+        catch (SQLException ex) {
+            System.out.println("Error: en sentencia de creación de estudiante: \n" + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return todosLosEstudiantes;
+    }
+
+
+
+
 
 
 }
