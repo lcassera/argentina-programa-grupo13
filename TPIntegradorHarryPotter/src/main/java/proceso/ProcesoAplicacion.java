@@ -79,9 +79,9 @@ public class ProcesoAplicacion {
         lista = procArchivo.procesarArchivoConValidacion();
         // Mostrar al usuario que el archivo se procesó.
         System.out.println("Proceso finalizado, " + lista.size() + " estudiantes leídos.");
-//        System.out.println("\nLista de Estudiantes:");
-//        for(Estudiante e : lista)
-//            System.out.println(e);
+        System.out.println("\n\nLista de Estudiantes:\n");
+           for(Estudiante e : lista)
+               System.out.println(e);
     }
 
     private void agregarEstudiantesHogwarts() {

@@ -72,9 +72,9 @@ public class Estudiante {
                 .append(" (Especie: ")
                 .append(especie)
                 .append(")")
-                //.append(" (Casa: ")
-                //.append(nombreCasa)
-                //.append(")")
+                .append(" (Casa: ")
+                .append(nombreCasa)
+                .append(")")
                 .toString();
     }
     public boolean isHuman(){
