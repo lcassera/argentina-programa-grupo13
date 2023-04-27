@@ -2,6 +2,7 @@ package proceso;
 
 import data.ProveedorConexionSqlite;
 import data.RepositorioCasas;
+import data.RepositorioEstudiantes;
 import modelo.Casa;
 import modelo.Estudiante;
 
@@ -32,9 +33,12 @@ public class ProcesoAplicacion {
         agregarEstudiantesHogwarts();
         cantidadEstudiantesPorCasa();
         listadoEstudiantesNoHumanos();
+        listadoEstudiantesHumanos();
 
         // Persistencia de Datos
         persistirCasas();
+
+        persistirEstudiantes();
 
     }
 
@@ -87,6 +91,23 @@ public class ProcesoAplicacion {
     }
 
     private void listadoEstudiantesNoHumanos() {
+        System.out.println();
+        System.out.println();
+        System.out.println("Estudiantes no humanos: ");
+        ArrayList<Estudiante> estudiantesNoHumanos = hogwarts.getAllNoHumanos();
+        for (Estudiante e : estudiantesNoHumanos) {
+            System.out.println(e);
+        }
+    }
+
+    private void listadoEstudiantesHumanos() {
+        System.out.println();
+        System.out.println();
+        System.out.println("Estudiantes humanos: ");
+        ArrayList<Estudiante> estudiantesHumanos = hogwarts.getAllHumanos();
+        for (Estudiante e : estudiantesHumanos) {
+            System.out.println(e);
+        }
     }
 
     private void persistirCasas() {
@@ -102,6 +123,23 @@ public class ProcesoAplicacion {
             }
 
         }
+    }
+
+    private void persistirEstudiantes() {
+
+        Connection miConexion = ProveedorConexionSqlite.conectar(".\\data\\baseDeDatos.sqlite");
+        RepositorioEstudiantes repositorio = new RepositorioEstudiantes(miConexion);
+        //obtengo el listado de humanos
+        ArrayList<Estudiante> estudiantesHumanos = hogwarts.getAllHumanos();
+
+        //Verifico si ya se esta guardado en la base de datos, si no esta guardado entonces lo
+        //inserto el estudiante en la tabla correspondiente
+        for (Estudiante e : estudiantesHumanos) {
+            if (!(repositorio.estudiantesEnTabla(e.getNumero()))) {
+                repositorio.agregarEstudiante(e);
+            }
+        }
+
     }
 
 }

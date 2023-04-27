@@ -72,13 +72,14 @@ public class Estudiante {
                 .append(" (Especie: ")
                 .append(especie)
                 .append(")")
-                .append(" (Casa: ")
-                .append(nombreCasa)
-                .append(")")
+                //.append(" (Casa: ")
+                //.append(nombreCasa)
+                //.append(")")
                 .toString();
     }
     public boolean isHuman(){
-        if (this.getEspecie().contains("Human")){
+
+        if (this.getEspecie().equalsIgnoreCase("Human")){
             return true;
         }
         else{
@@ -88,12 +89,19 @@ public class Estudiante {
 
     public static Estudiante parseStringArray(String[] datos) {
         try {
-
+            // Realizo las trasformaciones de cada porción de la línea de texto al dato que espera
+            //  la clase Estudiante
             int numero = Integer.parseInt(datos[0]);
             String nombre = datos[1];
             char genero = (datos[2].equals("Female") || datos[2].equals("Male")) ? datos[2].charAt(0) : 'X';
+
+//            if (datos[2].equals("Female") || datos[2].equals("Male"))
+//                genero = datos[2].charAt(0);
+//            else
+//                genero = 'X';
+//
             String nombreCasa = datos[4];
-            String especie = datos[5];
+            String especie = datos[5].trim();
             String blodStatus = datos[6];
 
             Estudiante e = new Estudiante(numero, nombre, genero, especie, blodStatus);
@@ -106,4 +114,5 @@ public class Estudiante {
         }
 
     }
+
 }

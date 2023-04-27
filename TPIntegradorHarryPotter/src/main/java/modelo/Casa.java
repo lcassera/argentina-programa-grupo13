@@ -36,15 +36,29 @@ public class Casa {
 
     }
 
+
+
     //Metodo que devuelve un listado de estudiantes no humanos
     public ArrayList<Estudiante> estudiantesNoHumanos() {
         ArrayList<Estudiante> noHumanos = new ArrayList<>();
-        for(Estudiante e : estudiantes ){
-            if (!e.isHuman()){
+        for (Estudiante e : estudiantes) {
+            if (!e.isHuman()) {
                 noHumanos.add(e);
             }
         }
         return noHumanos;
     }
+
+    //Metodo que devuelve un listado de estudiantes no humanos
+    public ArrayList<Estudiante> estudiantesHumanos() {
+        ArrayList<Estudiante> estudiantesHumanos = new ArrayList<>();
+        for (Estudiante e : estudiantes) {
+            if (e.isHuman()) {
+                estudiantesHumanos.add(e);
+            }
+        }
+        return estudiantesHumanos;
+    }
+
 
 }
