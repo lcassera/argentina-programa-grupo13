@@ -8,6 +8,7 @@ import modelo.Estudiante;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.IOException;
 
 public class ProcesoAplicacion {
     Scanner miEscanner = new Scanner(System.in);

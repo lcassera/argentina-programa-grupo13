@@ -1,13 +1,21 @@
 import modelo.Estudiante;
 import proceso.Hogwarts;
 import proceso.ProcesadorArchivoCsv;
+import proceso.ProcesoAplicacion;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args){
-        Scanner miEscanner = new Scanner(System.in);
+    public static void main(String[] args) throws Exception{
+
+        ProcesoAplicacion proc = new ProcesoAplicacion();
+
+//        try {//
+        proc.iniciarAplicacion();
+
+        /*Scanner miEscanner = new Scanner(System.in);
 
         System.out.println("=============================");
         System.out.println("Cargador de Datos de Hogwarts");
@@ -60,7 +68,7 @@ public class App {
             System.out.println("Casa: " + casa + " ==> " + hogwarts.getCasa(casa).getCantidadEstudiantes() + " estudiantes");
         }
         System.out.println();
-        System.out.println("---------------------------------");
+        System.out.println("---------------------------------");*/
 
     }
 }

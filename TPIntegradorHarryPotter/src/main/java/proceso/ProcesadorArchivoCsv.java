@@ -2,6 +2,7 @@ package proceso;
 
 import modelo.Estudiante;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,8 +57,53 @@ public class ProcesadorArchivoCsv {
         return lista;
 
     }
+    public ArrayList<Estudiante> procesarArchivoConValidacion(){
+        ArrayList<Estudiante> lista = new ArrayList<>();
+        Path f = Paths.get(nombreArchivo);
+        Pattern pattern = Pattern.compile(regex);
 
-    public ArrayList<Estudiante> procesarArchivoConValidacion() throws IOException{
+        if (Files.exists(f) && Files.isReadable(f)) {
+
+            try (Scanner miEscaner = new Scanner(f, "UTF-8")) {
+                int contadorLineasInvalidas = 0;
+                int contadorLineas = 1;
+
+                while (miEscaner.hasNextLine()) {
+                    String linea = miEscaner.nextLine();
+                    Matcher matcher = pattern.matcher(linea);
+//                    if (linea.matches(regex)) {
+                    if (matcher.matches()) {
+                        String[] datos = separarLinea(linea);
+//                        System.out.println("Procesando línea: " + contadorLineas);
+                        if (datos[3].contains("Student")){
+                            Estudiante e = Estudiante.parseStringArray(datos);
+                            lista.add(e);
+                        }
+                    }
+                    else {
+//                        System.out.println("Línea inválida: " + contadorLineas + " | " + linea);
+                        contadorLineasInvalidas++;
+                    }
+                    contadorLineas ++;
+                }
+                if (contadorLineasInvalidas > 0){
+                    System.err.println("Líneas inválidas encontradas: " + contadorLineasInvalidas );
+                }
+
+            }
+            catch(IOException ex) {
+                ex.printStackTrace();
+                System.exit(-1);
+            }
+
+        }
+        else {
+            System.out.println("Error: El archivo no existe.");
+        }
+        return lista;
+
+    }
+   /* public ArrayList<Estudiante> procesarArchivoConValidacion() {
         ArrayList<Estudiante> lista = new ArrayList<>();
         Path f = Paths.get(nombreArchivo);
         Pattern pattern = Pattern.compile(regex);
@@ -95,7 +141,7 @@ public class ProcesadorArchivoCsv {
         }
         return lista;
 
-    }
+    }*/
 
 
     private String[] separarLinea(String linea) {
