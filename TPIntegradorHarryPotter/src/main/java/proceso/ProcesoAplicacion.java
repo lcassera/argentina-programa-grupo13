@@ -93,7 +93,10 @@ public class ProcesoAplicacion {
     }
 
     private void cantidadEstudiantesPorCasa() {
+        System.out.println();
+        System.out.println();
         System.out.println("Cantidad de Estudiantes por casa: ");
+        System.out.println();
         for (String casa : new String[] {"Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw"}){
             System.out.println("Casa: " + casa + " ==> " + hogwarts.getCasa(casa).getCantidadEstudiantes() + " estudiantes");
         }

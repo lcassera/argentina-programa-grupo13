@@ -99,6 +99,7 @@ public class ProcesadorArchivoCsv {
         }
         else {
             System.out.println("Error: El archivo no existe.");
+            System.exit(1);
         }
         return lista;
 
